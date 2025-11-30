@@ -5,3 +5,6 @@ I am taking this opportunity to learn a new language.
 
 If, for any reason, you want to reproduce my code, browse the `src` folder and select the folder corresponding to a specific day; then, copy and paste your personal `input.txt`.
 
+Note that in this year, 12 puzzles are provided instead of the canonical 25.
+
+Have fun!
