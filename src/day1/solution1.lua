@@ -1,5 +1,5 @@
--- Idea for refactoring the (dirty) solution:
--- I could work with metatables and overload the _add behavior
+-- This solution is quick and dirty;
+-- for a more detailed solution, see solution2 and ../padlock
 
 package.path = package.path .. ";../?.lua"
 
