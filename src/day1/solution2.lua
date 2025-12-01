@@ -25,11 +25,7 @@ local lock_value = 50
 -- having a number of ticks >= 100 caused to 
 -- overpass the value zero
 local function rotate_with_rounds(val, direction, ticks)
-    -- todo: see how to do ternary operator
-    local already_zero = 0
-    if val == 0 then
-        already_zero = 1
-    end
+    local already_zero = ((val==0) and 1) or 0
 
     -- the number of full rounds
     local rounds = 0
