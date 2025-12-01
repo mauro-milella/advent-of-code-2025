@@ -1,5 +1,5 @@
 -- Implementation of the lock needed in the first problem (and maybe some future one?)
--- See day1 for an example of usage
+-- See day1/solution2 for an example of usage
 
 local rotate_with_rounds
 local rotate_left
@@ -13,6 +13,10 @@ function Padlock.new(value, rounds)
     return setmetatable({value=value or 50, rounds = rounds or 0}, Padlock)
 end
 
+---Delegate the update of a `Padlock` to `rotate_with_rounds`.
+---@param padlock table
+---@param action table -- [1] is a direction ("L" or "R"), while [2] is an integer
+---@return table
 function Padlock.__add(padlock, action)
     local direction = action[1]
     local ticks = action[2]
@@ -51,6 +55,7 @@ rotate_with_rounds = function (val, direction, ticks)
     return new_val, rounds + new_rounds
 end
 
+-- Internal logic of `rotate_with_rounds` for rotating right
 rotate_right = function (val, ticks)
     local rounds = 0 
     
@@ -65,6 +70,7 @@ rotate_right = function (val, ticks)
     return val, rounds
 end
 
+-- Internal logic of `rotate_with_rounds` for rotating left
 rotate_left = function (val, ticks, already_zero)
     local rounds = 0
     
