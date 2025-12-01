@@ -5,7 +5,7 @@ package.path = package.path .. ";../?.lua"
 
 local utils = require("utils")
 
-local lock = require("lock").new(50, 0)
+local lock = require("padlock").new(50, 0)
 
 utils.parse_file("input.txt", function(s)
     for line in s:gmatch("[^\n]+") do
