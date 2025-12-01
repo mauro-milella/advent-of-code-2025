@@ -21,7 +21,7 @@ end)
 
 local lock_value = 50
 
-function rotate(val, direction, ticks)
+local function rotate(val, direction, ticks)
     if ticks >= 100 then
         ticks = math.fmod(ticks, 100)
     end

@@ -24,7 +24,7 @@ local lock_value = 50
 -- rotate the lock, but also count how many times
 -- having a number of ticks >= 100 caused to 
 -- overpass the value zero
-function rotate_with_rounds(val, direction, ticks)
+local function rotate_with_rounds(val, direction, ticks)
     -- todo: see how to do ternary operator
     local already_zero = 0
     if val == 0 then
