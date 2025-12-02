@@ -24,11 +24,8 @@ function check(str)
     -- extract a piece of text, of at most the half of its length
     for i = 1, #str//2 do
         for j = 1, #str//2 do
-            local piece = str:sub(i, i+j-1)
-
             -- try to substitute every occurrence of piece with the empty character
-            local b = str:gsub(piece, "")
-            if #b == 0 then
+            if #str:gsub(str:sub(i, i+j-1), "") == 0 then
                 return 1
             end
         end
