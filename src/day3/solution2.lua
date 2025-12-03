@@ -23,8 +23,10 @@ local function highest_number(n)
         local update_value = nil
 
         while true do
+            if buffer[j+1] == nil then break end
+
             if c >= buffer[j] then
-                if buffer[j+1] < buffer[j] then
+                if buffer[j+1] <= buffer[j] then
                     update_value = buffer[j]
                 else
                     flag = true
