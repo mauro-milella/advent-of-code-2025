@@ -11,11 +11,11 @@ local function highest_number(n)
     
     local buffer = {}
 
-    for i = l, l-12, -1 do
+    for i = l, l-11, -1 do
         table.insert(buffer, 1, n:sub(i,i))
     end
 
-    for i = l-13, 1, -1 do
+    for i = l-12, 1, -1 do
         local c = n:sub(i,i)
 
         local j = 1
@@ -23,7 +23,17 @@ local function highest_number(n)
         local update_value = nil
 
         while true do
-            if buffer[j+1] == nil then break end
+            if buffer[j+1] == nil then
+                if update_value ~= nil then
+                    buffer[j] = update_value
+                end
+                
+                break
+            end
+
+            if update_value ~= nil then
+                c = update_value
+            end
 
             if c >= buffer[j] then
                 if buffer[j+1] <= buffer[j] then
@@ -33,6 +43,8 @@ local function highest_number(n)
                 end
 
                 buffer[j] = c
+            else
+                flag = true
             end
 
             if flag then
@@ -42,7 +54,7 @@ local function highest_number(n)
             j = j + 1
         end
     end
-
+    
     return tonumber(table.concat(buffer, "", 1, 12))
 end
 
