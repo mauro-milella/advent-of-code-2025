@@ -4,18 +4,18 @@ local string = require("string")
 local utils = require("utils")
 
 ---See the same function in `solution1.lua`;
----this works with a buffer of 12 characters
+---this works with a buffer of x characters
 ---@param n string
-local function highest_number(n)
+local function highest_number(n, x)
     local l = #n
     
     local buffer = {}
 
-    for i = l, l-11, -1 do
+    for i = l, l-(x-1), -1 do
         table.insert(buffer, 1, n:sub(i,i))
     end
 
-    for i = l-12, 1, -1 do
+    for i = l-x, 1, -1 do
         local c = n:sub(i,i)
 
         local j = 1
@@ -55,14 +55,14 @@ local function highest_number(n)
         end
     end
     
-    return tonumber(table.concat(buffer, "", 1, 12))
+    return tonumber(table.concat(buffer, "", 1, x))
 end
 
 local ans = 0
 
 utils.parse_file("input.txt", function(s)
     for line in s:gmatch("[^\n]+") do
-        ans = ans + highest_number(line)
+        ans = ans + highest_number(line, 12)
     end
 end)
 
