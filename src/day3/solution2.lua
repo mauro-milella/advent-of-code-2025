@@ -8,13 +8,17 @@ local utils = require("utils")
 ---@param n string
 local function highest_number(n, x)
     local l = #n
-    
+
     local buffer = {}
 
+    -- consider the last x characters
     for i = l, l-(x-1), -1 do
         table.insert(buffer, 1, n:sub(i,i))
     end
 
+    -- for each new character (the x-1th, x-2th, etc.),
+    -- replace the xth one if is convenient;
+    -- if you do that, repeat all the process towards the right.
     for i = l-x, 1, -1 do
         local c = n:sub(i,i)
 
