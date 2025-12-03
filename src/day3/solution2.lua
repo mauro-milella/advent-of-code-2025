@@ -4,8 +4,9 @@ local string = require("string")
 local utils = require("utils")
 
 ---See the same function in `solution1.lua`;
----this works with a buffer of x characters
+---this works with a buffer of any dimension
 ---@param n string
+---@param x integer -- number of characters to consider
 local function highest_number(n, x)
     local l = #n
 
