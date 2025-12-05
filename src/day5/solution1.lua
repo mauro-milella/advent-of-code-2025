@@ -17,17 +17,18 @@ local function solve(ranges, query)
         end
     end
     
-
     return 0
 end
 
+
 utils.parse_file("input.txt", function(s)
+    -- parse the first part of the file
     for l, r in s:gmatch("(%d+)%-(%d+)\n") do
         table.insert(ranges, {tonumber(l), tonumber(r)})
     end
 
+    -- and now the second part
     local second_section_idx = s:find("\n\n")
-
     for query in s:sub(second_section_idx, #s):gmatch("%d+") do
         ans = ans + solve(ranges, tonumber(query))
     end
