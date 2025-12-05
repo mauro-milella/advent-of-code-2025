@@ -2,8 +2,6 @@ package.path = package.path .. ";../?.lua"
 
 local utils = require("utils")
 
-local ans = 0
-
 -- pairs [l,r] of fresh items
 local ranges = {}
 
