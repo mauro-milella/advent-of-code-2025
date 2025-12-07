@@ -2,8 +2,6 @@ package.path = package.path .. ";../?.lua"
 
 local utils = require("utils")
 
-local ans = 0
-
 local input = {
     matrix = {},
     operations = {}
@@ -68,35 +66,55 @@ local function solve(t, c)
     return ans
 end
 
-
-local function cipherize(m, l, r, height)
+---Collect all the ciphers, column-wise, in the given matrix of characters;
+---the columns are the ones between l and l+r-1.
+---
+---For example, consider:
+---5 
+-- 2 
+-- 58
+-- 99
+-- + 
+---
+---The resulting table, considering l=1, r=2 and h=4 is {5259, 89} (the "+" can be ignored)
+---
+---@param m table -- matrix of characters, including spaces and digits
+---@param l integer -- left bound of the chunk to be cipherized
+---@param r integer -- right bound of the chunk to be cipherized
+---@param h integer -- the h of each column
+---@return table -- a list of integers
+local function cipherize(m, l, r, h)
     local ans = {}
 
     for i = 1, r-l+1 do
         local n_as_string = ""
-        for j = 1, height do
+        for j = 1, h do
             n_as_string = n_as_string .. m[j][l+i-1]
-            print(i, j)
         end
 
-        print("RES: ", n_as_string)
+        table.insert(ans, tonumber(n_as_string))
     end
 
     return ans
 end
 
-print("Remember to change 'the height of your problem' in the 'cipherize' function")
-print("(e.g., it is 3 for the toy example)")
+print("README!")
+print("1) Remember to change 'the height of your problem' in the 'cipherize' function")
+print("\t(e.g., it is 3 for the toy example)")
+print("2) Beware to check your personal input when copy-pasting it;")
+print("\tthe assumption, here, is that every line ends with a space character.\n")
 
 -- main logic
 -- variables for keeping track of the bounds within
 -- a certain problem is defined
 local l_bound, r_bound = 1, ciphers[1]
+
+local ans = 0
+
 for i = 1, #ciphers do
-    local n = cipherize(input.matrix, l_bound, r_bound, 3)
-    
-    print("Problem", i)
-    print(n[1])
+    local n = cipherize(input.matrix, l_bound, r_bound, 4)
+
+    ans = ans + solve(n, input.operations[i])
     
     -- skip to the next problem section, if the latter is well defined
     l_bound = r_bound + 2
