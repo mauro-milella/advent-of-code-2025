@@ -49,7 +49,7 @@ utils.parse_file("input.txt", function(s)
     for line in s:gmatch("[^\n]+") do
         local diagram = 0
         local schematics = {}
-        local a, b, c = line:match("%[(.+)%] (.+) %{(.+)%}")
+        local a, b, _ = line:match("%[(.+)%] (.+) %{(.+)%}")
 
         -- build the diagram
         local pos = a:find("#", 1)
